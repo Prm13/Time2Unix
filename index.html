@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Time2Unix</title>
+</head>
+<style>
+	* {
+		font-size: 20px;
+		text-align: center;
+	}
+	body {
+		background-color: #000;
+		color: #fff;
+		padding: 50px;
+	}
+	#time {
+		display: block;
+		width: 600px;
+		height: 30px;
+		margin: 0 auto 60px;
+	}
+	#unix {
+		cursor: pointer;
+	}
+</style>
+<body>
+	<input type="datetime-local" id="time">
+	<p id="unix" title="Copy Unix seconds"></p>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+	$(document).keyup(function() {
+		$('#unix').text(new Date($('#time').val()) / 1000);
+	});
+	$('#unix').click(function(){
+		let temp = $('<input>');
+	    $('body').append(temp);
+	    temp.val($(this).text().trim()).select();
+	    document.execCommand('copy');
+	    temp.remove();
+	});
+</script>
+</body>
+</html>
